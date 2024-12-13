@@ -1,0 +1,6 @@
+/*/FLASH_RUN/
+*.o
+*.pyc
+*.lst
+*.d
+.hg
