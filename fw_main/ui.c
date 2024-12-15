@@ -28,12 +28,12 @@ void ui_splash(void)
 void ui_update(void)
 {
 	uint32_t te = tehu_get_t_e() * 1000;
-	uint32_t to = tehu_get_t_o() * 1000;
-	uint32_t h = tehu_get_hum() * 1000;
-	uint32_t rh = tehu_get_relhum() * 1000;
+//	uint32_t to = tehu_get_t_o() * 100;
+	uint32_t h = tehu_get_hum() * 100;
+	uint32_t rh = tehu_get_relhum() * 100;
 
-	tfp_sprintf(line1, "T%3d.%03d   %2d.%03d", te / 1000, te % 1000, h / 1000, h % 1000);
-	tfp_sprintf(line2, "T%3d.%03d   %2d.%03d", to / 1000, to % 1000, rh / 1000, rh % 1000);
+	tfp_sprintf(line1, "T=%3d.%03d        ", te / 1000, te % 1000);
+	tfp_sprintf(line2, "H=%2d.%02d RH=%2d.%02d", h / 100, h % 100, rh / 100, rh % 100);
 	LCDI2C_setCursor(0,0);
 	LCDI2C_write_String(line1);
 	LCDI2C_setCursor(0,1);
