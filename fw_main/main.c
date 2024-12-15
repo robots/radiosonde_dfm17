@@ -7,6 +7,7 @@
 #include "spi.h"
 #include "systime.h"
 
+#include "button.h"
 #include "clock.h"
 #include "eeprom.h"
 #include "si4063.h"
@@ -14,6 +15,27 @@
 #include "tehu.h"
 #include "ui.h"
 
+const struct gpio_init_table_t pwr_gpio[] = {
+	{ // pwr hold
+		.gpio = GPIOC,
+		.pin =  BV(0),
+		.mode = GPIO_MODE_OUT_PP,
+		.speed = GPIO_SPEED_LOW,
+		.state = GPIO_SET,
+	},
+};
+
+static void button_handler(uint32_t btn, uint32_t ev)
+{
+	if (btn == 0) {
+		if (ev == BUTTON_EV_LONG) {
+			gpio_set(&pwr_gpio, GPIO_RESET);
+			led_set(1, LED_ON);
+		} else if (ev == BUTTON_EV_SHORT) {
+			// TODO:
+		}
+	}
+}
 
 int main(void)
 {
@@ -27,6 +49,10 @@ int main(void)
 	spi_init();
 	si4063_init();
 	
+	gpio_init(pwr_gpio, ARRAY_SIZE(pwr_gpio));
+	button_init();
+	button_set_ev_handler(button_handler);
+
 	clock_ext();
 
 	systime_init();
@@ -47,6 +73,7 @@ int main(void)
 		led_process();
 		//radio_process();
 		tehu_process();
+		button_process();
 
 		if (tehu_is_new_results()) {
 			ui_update();

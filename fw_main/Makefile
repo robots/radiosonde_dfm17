@@ -76,7 +76,7 @@ BSP = ../bsp/$(BOARD)
 ## Application:
 SRC = main.c
 
-SRC += clock.c syscall.c tic.c tehu.c i2c.c eeprom.c si4063.c
+SRC += button.c clock.c syscall.c tic.c tehu.c i2c.c eeprom.c si4063.c
 SRC += LiquidCrystal_I2C.c i2c_soft.c ui.c
 
 SRC += ../common/delay.c
