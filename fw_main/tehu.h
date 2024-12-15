@@ -5,7 +5,7 @@ void tehu_init(void);
 
 int tehu_is_new_results(void);
 
-void tehu_periodic(void);
+void tehu_process(void);
 
 float tehu_get_t_e(void);
 

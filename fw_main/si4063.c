@@ -753,16 +753,6 @@ void si4063_configure_gpio(uint8_t gpio0, uint8_t gpio1, uint8_t gpio2, uint8_t 
     si4063_send_command(SI4063_COMMAND_GPIO_PIN_CFG, sizeof(data), data);
 }
 
-static void send(const uint8_t *data, uint8_t datalen)
-{
-			spi_lock(0);
-			spi_cs_on();
-			spi_send(data, NULL, datalen);
-			spi_cs_off();
-			spi_unlock();
-
-}
-
 int si4063_init()
 {
 		gpio_init(si4063_gpio, ARRAY_SIZE(si4063_gpio));

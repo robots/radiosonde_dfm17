@@ -155,7 +155,7 @@ static int load_coefs(void)
 	return 0;
 }
 
-void tehu_periodic(void)
+void tehu_process(void)
 {
 	if (tehu_state == 0)
 	{

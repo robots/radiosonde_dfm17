@@ -62,7 +62,7 @@ void led_toggle(uint8_t led)
 	gpio_set(&led_gpio[led], state ? GPIO_RESET : GPIO_SET);
 }
 
-void led_periodic()
+void led_process()
 {
 	static uint32_t time_last = 0;
 	uint8_t mode;

@@ -43,10 +43,10 @@ int main(void)
 	ui_splash();
 
 	while (1) {
-		systime_periodic();
-		led_periodic();
-		//radio_periodic();
-		tehu_periodic();
+		systime_process();
+		led_process();
+		//radio_process();
+		tehu_process();
 
 		if (tehu_is_new_results()) {
 			ui_update();

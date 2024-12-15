@@ -9,7 +9,7 @@
 typedef void (*timer_fnc)(void);
 
 void systime_init(void);
-void systime_periodic(void);
+void systime_process(void);
 void systime_add(timer_fnc fnc, uint32_t period);
 void systime_add_oneshot(timer_fnc fnc, uint32_t period);
 void systime_remove(timer_fnc fnc);

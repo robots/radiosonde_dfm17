@@ -35,7 +35,7 @@ void systime_init()
 	NVIC_SetPriority (SysTick_IRQn, 2);
 }
 
-void systime_periodic(void)
+void systime_process(void)
 {
 	for (uint8_t i = 0; i < ARRAY_SIZE(systime_timer); i++) {
 		if (systime_timer[i].active == 0)
